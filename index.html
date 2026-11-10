@@ -720,7 +720,8 @@ function updatePlayer(dt) {
     P.reloadT -= dt;
     if (P.reloadT <= 0) {
       const take = Math.min(MAG - P.ammo, P.reserve);
-      P.ammo = take; P.reserve -= take; P.reloading = false; updateHUD();
+      P.ammo += take; // ИСПРАВЛЕНО: прибавляем к текущим патронам, а не заменяем
+      P.reserve -= take; P.reloading = false; updateHUD();
     }
   }
   if (P.firing) shoot();
